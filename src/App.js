@@ -15,6 +15,15 @@ function App() {
     { name: 'Jessica', age: 45 },
   ]
 
+  const planets = [
+    { name: 'Mars', isGasPlanet: false },
+    { name: 'Earth', isGasPlanet: false },
+    { name: 'Jupiter', isGasPlanet: true },
+    { name: 'Venus', isGasPlanet: false },
+    { name: 'Neptune', isGasPlanet: true },
+    { name: 'Uranus', isGasPlanet: true },
+  ]
+
 
   return (
     <div className="App">
@@ -22,8 +31,6 @@ function App() {
       <h1 style={{ color: isGreen ? 'green' : 'red' }}>This has color</h1>
 
       {isGreen && <button>This is a button</button>}
-
-
 
 
       <h1>**Lists/Arrays**</h1>
@@ -39,8 +46,24 @@ function App() {
       {users.map((user, key) => {
         return <User name={user.name} age={user.age} key={key} />
       })}
+
+
+
+      <h1>Planets exercise</h1>
+      {planets.map(
+        (planet, key) => planet.isGasPlanet && <Planets name={planet.name} key={key}/>//component
+        //(planet, key) => planet.isGasPlanet && <h1 key={key}>{planet.name}</h1>
+      )}
+
     </div>
   );
+}
+
+//component
+const Planets = ({ name, isGasPlanet }) => {
+  return (
+    <div><h1>{name}</h1> <h1>{isGasPlanet}</h1> </div>
+  )
 }
 
 export default App;
