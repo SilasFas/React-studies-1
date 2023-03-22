@@ -3,6 +3,38 @@ import { useState } from "react";
 
 function App() {
 
+  const [inputValue, setInputValue] = useState('')
+
+  const handleInputChange = (event) => {
+    console.log(event.target.value)
+    setInputValue(event.target.value)
+  }
+
+  return (
+    <div className="App">
+      <input
+        type="text"
+        placeholder='Type something...'
+        onChange={handleInputChange}
+      />
+
+      <h1>{inputValue}</h1>
+
+    </div>
+  );
+}
+
+export default App;
+
+
+
+
+/*
+import './App.css';
+import { useState } from "react";
+
+function App() {
+
   const [age, setAge] = useState(0)
 
   const increaseAge = () => {
@@ -23,3 +55,4 @@ function App() {
 }
 
 export default App;
+*/
