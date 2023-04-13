@@ -11,6 +11,7 @@ function App() {
     const task = {
       id: todoList.length === 0 ? 1 : todoList[todoList.length - 1].id + 1,
       taskName: newTask,
+      completed: false,
     }
     setTodoList([...todoList, task])
   }
@@ -20,10 +21,22 @@ function App() {
     // return if the task is not equal to the taskName
   }
 
+  const completeTask = (id) => {
+    setTodoList(
+      todoList.map((task) => {
+        if (task.id === id) {
+          return { ...task, completed: true }
+        } else {
+          return task
+        }
+      })
+    )
+  }
+
+
   return (
     <div className="App">
       <div className='addTask'>
-
         <input onChange={(event) => setNewTask(event.target.value)} />
         <button onClick={addTask}>Add Task</button>
 
@@ -38,6 +51,8 @@ function App() {
               taskName={task.taskName}
               id={task.id}
               deleteTask={deleteTask}
+              completeTask={completeTask}
+              completed={task.completed}
             />
           )
         })}
