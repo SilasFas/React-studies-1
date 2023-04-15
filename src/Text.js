@@ -1,22 +1,27 @@
-import './App.css';
-import { useState } from "react";
-import { Text } from './Text';
+import { useState, useEffect } from "react"
 
-function App() {
+export const Text = () => {
+    const [text, setText] = useState('')
 
-  const [showText, setshowText] = useState(false)
+    useEffect(() => {
+        console.log('component mounted')
+        
+        return () => {
+            console.log('component unmounted')
+        }
+    },[])
 
-  return (
-    <div className="App">
-      <button onClick={()=> {setshowText(!showText)}}>Show Text</button>
-
-      {showText && <Text/>}
-
-    </div>
-  );
+    return (
+        <div>
+            <input type="text"
+                onChange={(event) => {
+                    setText(event.target.value)
+                }}
+            />
+            <h1>{text}</h1>
+        </div>
+    )
 }
-
-export default App;
 
 /*
 > Lifecycle = is what happen from the birth of a componet to the death of a conponent.
