@@ -1,9 +1,12 @@
 import './App.css';
+import { HideShow } from './components/HideShow';
 
 function App() {
+
   return (
     <div className="App">
-      <h1>Hello there! Start here!</h1>
+      <h1>Custom Hook</h1>
+      <HideShow />
     </div>
   );
 }
