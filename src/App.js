@@ -1,9 +1,12 @@
 import './App.css';
+import { User } from './components/User';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hello there! Start here!</h1>
+      <h1>TypeSafety / PropTypes</h1>
+
+      <User />
     </div>
   );
 }
