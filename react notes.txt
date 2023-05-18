@@ -1,0 +1,311 @@
+npx create-react-app .
+npm start
+npm install react-router-dom
+npm install react-axios
+npm install prop-types
+npm install @tastack/react-query
+npm install react-hook-form 
+npm install yup
+npm install @hookform/resolvers
+npm install prop-types
+npm install react-icons
+npx create-react-app . --template typescript
+
+
+===============================================================
+part1
+
+npx create-react-app .
+>> cria um arquivo react
+
+npm start
+>> execução do script
+
+ctrol + c e dizendo yes fecha o programa/script
+
+JSX = uma junção entre HTML e JS e é onde é feito desenvolvido todo nosso programa.
+
+Sempre usar className = "" no react
+
+componentes em react
+1 - sempre começa com a primeira letra maiuscula.
+2 - sempre retorna HTML
+
+Criar pasta components no src
+--no arquivo que será criado dentro da pasta = o nome deve ser a primeira em maiusculo
+
+>>>diferença entre component e função
+//function
+const getName = () => {
+  return 'Silas'
+}
+
+//React Component
+const GetNameComponent = () => {
+  return <h1>Silas</h1>
+}
+
+Em todo componente eu posso passar um argumento chamado props
+
+//React Component
+const GetNameComponent = (props) => {
+  return <h1>Silas</h1>
+}
+=======================================================
+part2
+
+Para usar CSS ou eu crio um pasta index.css e importo para o arquivo onde quero aplicadar css 
+import './Index.css';
+
+Posso mexer no arquivo index.css ou App.css - lembrando que eu altero todo o css do meu projeto, incluindo todas as páginas.
+
+ou eu crio App.module.css
+import styles from './App.module.css';
+
+No CSS react não pode criar classes com traço ex: frase-conteiner 
+2 opções:
+1 - frase_conteiner 
+2 - fraseConteiner 
+
+
+ternary operator
+
+{age >= 18 ? <h1>over age</h1> : <h1>underage</h1>}
+
+<h1 style={{color: isGreen ? 'green' : 'red'}}>This has color</h1>
+
+{isGreen && <button>This is a button</button>}
+
+? = if
+: = else
+
+1 - loop throught the list
+2 - ternary operator
+3 - components
+=======================================================
+>>>>>>>part3-states/useStateHook/cases<<<<<<<<<<<
+
+State: a variable that holds data
+Hook: a function thats starts with the word use 
+
+onChange = quando é passado uma função neste evento. O mesmo tem um parâmetro/argumento, por padrão, chamado event.
+event = is used to grab information about the input 
+
+console.log(event.target.value) = it will console.log the value of whatever it is currently writtten on the input
+=======================================================
+>>>>>>>part4-CRUDinReact/TodoList<<<<<<<<<<<
+===================================================part5-componentLifecycle/useEffectHook/ReactStrictMode<<<<
+
+> Lifecycle = is what happen from the birth of a componet to the death of a conponent.
+>> There are 3 stages:
+
+1 - mounting stage (the component apears in the screen)
+
+2 - updating stage (changing the UI)
+
+3 - unmounting stage  (the component stops apearing in the screen)
+
+
+The useEffect Hook allows you to perform side effects in your components.
+
+Some examples of side effects are: fetching data, directly updating the DOM, and timers.
+
+useEffect accepts two arguments. The second argument is optional.
+
+useEffect(<function>, <dependency>)
+
+    useEffect(() => {
+        console.log('component mounted')
+    })
+>>>You will see only the: mounting stage
+
+    useEffect(() => {
+        console.log('component mounted')
+    },[text])
+>>>You will see the: mounting stage and the updating stage
+
+    useEffect(() => {
+        console.log('component mounted')
+        
+        return () => {
+            console.log('component unmounted')
+        }
+    },[])
+>>>You will see the: mounting stage and the unmounting stage
+===================================================part6-fetchfunction/axios<<<<
+
+API: 
+https://catfact.ninja/fact
+https://api.agify.io?name=michael
+
+
+fetch the data form the API - make a request
+
+Json : method / way to represent data
+
+Fetch data from an API in JS
+  fetch("https://catfact.ninja/fact")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log(data)
+    }) 
+
+axios: another library used to fetch data
+
+Axios.length("https://catfact.ninja/fact")
+    .then((response) => {
+      console.log(response.data)
+    })
+===================================================part8-react-router-dom<<<<
+
+: helps to create many web pages for the project. Because in react we only have one single index.html file.
+
+npm install react-router-dom
+
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+===================================================part9-stateManagement/useContext<<<<
+ 
+
+parent :(APP)
+child (Home / Profile)
+grandchild (ChangeProfile)
+
+
+prop drilling
+
+createContext
+useContext
+===================================================part9.1-reactQuery<<<<
+
+npm install @tastack/react-query
+
+===================================================part9.2-ReactHookForm<<<<
+1 - ProjectSetup
+2 - ReactHookForm
+3 - ValidationWithYup
+
+npm install react-hook-form yup
+(display errors and submit the form)
+
+npm install yup
+(validation)
+
+npm install @hookform/resolvers
+(it gives a function that heps with the integration between yup and react hook form)
+===================================================part9.3-CustomHooks<<<<
+
+
+
+
+
+===================================================part9.4-TypeScript/TypeSafety/PropTypes<<<<
+
+npm install prop-types
+
+
+component files: .tsx
+simple files: .ts 
+
+
+interface : describe the face of an object 
+
+============Exmaple=================
+const [name, setName] = useState<string>("")
+============Exmaple=================
++++declare a useState with react and typescript +++
+
+import React, { useState } from 'react';
+
+interface Person {
+  name: string;
+  age: number;
+}
+
+const MyComponent = () => {
+  const [person, setPerson] = useState<Person>({
+    name: 'John Doe',
+    age: 30,
+  });
+
+  // Update the state
+  const updatePerson = () => {
+    setPerson({
+      name: 'Jane Smith',
+      age: 25,
+    });
+  };
+
+  return (
+    <div>
+      <p>Name: {person.name}</p>
+      <p>Age: {person.age}</p>
+      <button onClick={updatePerson}>Update Person</button>
+    </div>
+  );
+};
+
+enum: used when a want to create options
+
+export enum FavoriteColor { // enum: used when a want to create options
+    blue = 'blue',
+    red = 'red',
+    yellow = 'yellow',
+}
+
+
+(Declaro o que está retornando)
+const getAge = (name: string): number => {
+	return 26
+}
+===================================================part9.4-TypeScript/TypeSafety/PropTypes<<<<
+
+
+Redux Toolkit
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+===================================================React Icons<<<<
+
+https://react-icons.github.io/react-icons/
+
+npm install react-icons
+
+
+==================================================
+npm run backend
+
+
+useEffect(() => {
+        //Runs only on the first render
+        fetch('http://localhost:5000/categories', {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+            },
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setCategories(data)
+            })
+            .catch((err) => console.log(err))
+    }, [])
+==================================================
+Firebase
+npm install firebase
+npm install firebase react-firebase-hooks
